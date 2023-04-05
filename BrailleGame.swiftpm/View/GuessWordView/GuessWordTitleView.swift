@@ -16,6 +16,7 @@ struct GuessWordTitleView: View {
             ForEach(words) { word in
                 Text(word)
                     .font(.system(size: 48, weight: .bold, design: .rounded))
+                    .foregroundColor(.black)
             }
         }
     }
