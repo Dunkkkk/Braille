@@ -19,11 +19,24 @@ extension DotStatus {
     var color: Color {
         switch self {
         case .activate:
-            return .black
+            return Color(hex: "#FAE085")!
         case .nonActivate:
-            return .gray
+            return Color(hex: "#FEFEFE")!
         case .wrong:
-            return . red
+            return Color(hex: "FA8C85")!
+        case .correct:
+            return .green
+        }
+    }
+    
+    var shadowColor: Color {
+        switch self {
+        case .activate:
+            return .clear
+        case .nonActivate:
+            return Color(hex: "#FAE085")!
+        case .wrong:
+            return Color(hex: "FA8C85")!
         case .correct:
             return .green
         }

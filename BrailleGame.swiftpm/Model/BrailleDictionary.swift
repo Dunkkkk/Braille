@@ -8,35 +8,61 @@
 enum BrailleDictionary: CaseIterable {
     
     case a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z
-    case zero, one, two, three, four, five, six, seven, eight, nine
-
+    
     
     static let emptyBraille: Braille = Braille(meaning: [""], dotNumber: [Int()])
 }
 
 extension BrailleDictionary {
     
+    static func alphabetToBraile(_ text: String) -> Braille {
+        var braille = BrailleDictionary.allCases.first { word in
+            word.braille.meaning.contains(where: { $0 == text })
+        }
+        return braille!.braille
+    }
+    
+    static func wordtoBrailes(_ texts: String) -> [Braille] {
+        
+        var answer = [Braille]()
+        for text in texts {
+            answer.append(BrailleDictionary.alphabetToBraile("\(text)"))
+        }
+        
+        return answer
+    }
+    
+    static func dotsToAlphabet(_ dots: [Dot]) -> String {
+        var braille = BrailleDictionary.allCases.first { word in
+            word.braille.dots == dots
+        }
+        if let answer = braille?.braille.meaning.first! {
+            return answer
+        }
+        return ""
+    }
+    
     var braille: Braille {
         switch self {
-        case .a, .one:
+        case .a:
             return Braille(meaning: ["a"], dotNumber: [1])
-        case .b, .two:
+        case .b:
             return Braille(meaning: ["b"], dotNumber: [1,3])
-        case .c, .three:
+        case .c:
             return Braille(meaning: ["c"], dotNumber: [1,2])
-        case .d, .four:
+        case .d:
             return Braille(meaning: ["d"], dotNumber: [1,2,4])
-        case .e, .five:
+        case .e:
             return Braille(meaning: ["e"], dotNumber: [1,4])
-        case .f, .six:
+        case .f:
             return Braille(meaning: ["f"], dotNumber: [1,2,3])
-        case .g, .seven:
+        case .g:
             return Braille(meaning: ["g"], dotNumber: [1,2,3,4])
-        case .h, .eight:
+        case .h:
             return Braille(meaning: ["h"], dotNumber: [1,3,4])
-        case .i, .nine:
+        case .i:
             return Braille(meaning: ["i"], dotNumber: [2,3])
-        case .j, .zero:
+        case .j:
             return Braille(meaning: ["j"], dotNumber: [2,3,4])
         case .k:
             return Braille(meaning: ["k"], dotNumber: [1,5])
@@ -78,9 +104,11 @@ extension BrailleDictionary {
         switch self {
         case .a,.b,.c,.d,.e,.f,.g,.h,.i,.j,.k,.l,.m,.n,.o,.p,.q,.r,.s,.t,.u,.v,.w,.x,.y,.z:
             return .alphabet
-        case .zero, .one, .two, .three, .four, .five, .six, .seven, .eight, .nine:
-            return .number
         }
+    }
+    
+    static func isHere(it target: Braille) -> Braille? {
+        return BrailleDictionary.allCases.first { $0.braille == target }?.braille
     }
 }
 

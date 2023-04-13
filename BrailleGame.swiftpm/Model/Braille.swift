@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Braille {
+struct Braille: Equatable {
     
     var dots: [Dot]
     var meaning: [String]
@@ -25,13 +25,13 @@ struct Braille {
 
 extension Braille {
     
-    static func ==(lhs: Braille, rhs: Braille) -> Bool {
+    static var emptyBraille = Braille(meaning: [""], dotNumber: [])
+    
+    static func == (lhs: Braille, rhs: Braille) -> Bool {
         return lhs.dots == rhs.dots
     }
     
     func hint(dots: [Dot]) -> (DotStatus, Int) {
-        print(dots)
-        print(self.dots)
         var hints: [(DotStatus, Int)] = [(DotStatus, Int)]()
         for dot in dots.enumerated() {
             if self.dots[dot.offset].status != dot.element.status {

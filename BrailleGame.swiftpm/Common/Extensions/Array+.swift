@@ -18,7 +18,7 @@ extension Array where Element == Dot {
 
 extension Array where Element == String {
     
-    func isThere(a target: String) -> Bool {
+    func isThere(a target: String) -> Bool  {
         for string in self {
             if string == target { return true }
         }

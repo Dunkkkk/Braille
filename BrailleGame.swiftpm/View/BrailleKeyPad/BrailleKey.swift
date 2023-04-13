@@ -15,18 +15,13 @@ struct BrailleKey: View {
     
     var body: some View {
         Circle()
+            .frame(width: 127, height: 127)
             .foregroundColor(dot.status.color)
-            //.modifier(ShakeEffect(delta: numberOfShakes))
+            .shadow(color: dot.status.shadowColor, radius: 20, x: 0, y: 0)
             .animation(.linear(duration: 0.2), value: dot.status)
             .onTapGesture {
                 if isInteractive {
                     dot.status.toggle()
-//                    if numberOfShakes == 0 {
-//                        numberOfShakes = 110
-//
-//                    }else {
-//                        numberOfShakes = 0
-//                    }
                 }
             }
     }
