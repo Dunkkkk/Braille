@@ -111,10 +111,12 @@ struct CharacterChoiceView: View {
                         }
                         .opacity(char3Finish ? 0.3 : 1)
                 }
+                Spacer()
+                    .frame(height: 50)
                 Text("Please select a character")
                     .foregroundColor(Color(hex: "#BA9309")!)
                     .font(.system(size: 25, weight: .bold, design: .default))
-                Spacer(minLength: 152)
+                Spacer(minLength: 10)
                 NavigationLink {
                     if user1 != "" && user2 != "" {
                         TicTacToeView(viewmodel: TicTacToeViewModel(difficulty: difficulty, withComputer: difficulty == .twoplayer ? false : true), goToOrigin: $goToOrigin, user1: user1, user2: user2)
@@ -135,5 +137,13 @@ struct CharacterChoiceView: View {
             }
             .padding(.bottom, 94)
         }
+    }
+}
+
+struct previewer: PreviewProvider {
+
+    @State static var c = false
+    static var previews: some View {
+        CharacterChoiceView(goToOrigin: $c, difficulty: .hard)
     }
 }

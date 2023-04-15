@@ -177,7 +177,7 @@ class TicTacToeViewModel: ObservableObject {
                         diplayName = "Computer"
                     }
                     self.winnerInfo = (winner1, diplayName)
-                    self.isFinished = true
+                    self.isFinished = true    
                 }
                 if self.tictactoeItems[2].turn != .none
                     && self.tictactoeItems[2].turn == self.tictactoeItems[4].turn

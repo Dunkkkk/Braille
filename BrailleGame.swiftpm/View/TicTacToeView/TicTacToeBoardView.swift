@@ -32,9 +32,9 @@ struct TicTacToeBoardView: View {
                                     .foregroundColor(.clear)
                                     .overlay(PathView(directions: boardPaths[row][col], size: Int(proxy.size.width / 3)))
                                     
-                                
+                                let textSize = tictactoeItems[index].title.count > 1 ? 40 : 60
                                 Text(tictactoeItems[index].title)
-                                    .font(.system(size: 64, weight: .semibold, design: .default))
+                                    .font(.system(size: CGFloat(textSize), weight: .semibold, design: .default))
                                 
                                 if tictactoeItems[index].turn == .user1 {
                                     Image(user1)
